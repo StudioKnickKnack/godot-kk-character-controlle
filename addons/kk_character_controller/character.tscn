@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjcwqsj8brdyf"]
+
+[ext_resource type="Script" path="res://addons/kk_character_controller/character.gd" id="1_565hr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cst0l"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_trmhw"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_wg8jd"]
+
+[node name="Character" type="CharacterBody3D"]
+script = ExtResource("1_565hr")
+
+[node name="Collision_Capsule" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_cst0l")
+
+[node name="Presentation" type="Node3D" parent="."]
+
+[node name="Mesh_Capsule" type="MeshInstance3D" parent="Presentation"]
+mesh = SubResource("CapsuleMesh_trmhw")
+skeleton = NodePath("../..")
+
+[node name="Mesh_Arrow" type="MeshInstance3D" parent="Presentation/Mesh_Capsule"]
+transform = Transform3D(0.8, -5.58059e-16, -6.09838e-24, 0, -3.49691e-08, 0.2, -5.58059e-16, -0.8, -8.74228e-09, 0, 1.15165, 0)
+mesh = SubResource("PrismMesh_wg8jd")
