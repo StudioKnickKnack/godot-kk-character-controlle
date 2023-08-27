@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://rdddwcscfrlr"]
+[gd_scene load_steps=3 format=3 uid="uid://rdddwcscfrlr"]
 
 [ext_resource type="PackedScene" uid="uid://cjcwqsj8brdyf" path="res://addons/kk_character_controller/character.tscn" id="1_v1e4l"]
+[ext_resource type="Script" path="res://src/input controller.gd" id="2_36i0i"]
 
 [node name="World" type="Node3D"]
 
@@ -9,3 +10,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.1, 2.08165e-1
 size = Vector3(9, 0.1, 9)
 
 [node name="Character" parent="." instance=ExtResource("1_v1e4l")]
+
+[node name="Input Controller" type="Node" parent="Character" node_paths=PackedStringArray("character")]
+script = ExtResource("2_36i0i")
+character = NodePath("..")
