@@ -1,16 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://rdddwcscfrlr"]
+[gd_scene load_steps=4 format=3 uid="uid://rdddwcscfrlr"]
 
 [ext_resource type="PackedScene" uid="uid://cjcwqsj8brdyf" path="res://addons/kk_character_controller/character.tscn" id="1_v1e4l"]
 [ext_resource type="Script" path="res://src/input controller.gd" id="2_36i0i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pd11"]
+albedo_color = Color(1, 0.686275, 0, 1)
 
 [node name="World" type="Node3D"]
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.1, 2.08165e-12)
 size = Vector3(9, 0.1, 9)
+material = SubResource("StandardMaterial3D_2pd11")
 
 [node name="Character" parent="." instance=ExtResource("1_v1e4l")]
 
 [node name="Input Controller" type="Node" parent="Character" node_paths=PackedStringArray("character")]
 script = ExtResource("2_36i0i")
 character = NodePath("..")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Character"]
+remote_path = NodePath("../../Camera")
+update_rotation = false
+update_scale = false
+
+[node name="Camera" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 1.74393e-16, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 2, 5.8, 2)
+fov = 60.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.562951, -0.262508, 0.783693, 0.710267, 0.331203, 0.621148, -0.422618, 0.906308, -3.42563e-08, 2.08165e-12, 0.38, 2.08165e-12)
+shadow_enabled = true
+sky_mode = 1
